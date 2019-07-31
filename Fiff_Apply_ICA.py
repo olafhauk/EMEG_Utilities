@@ -3,7 +3,7 @@
 ==================================================================================
 Apply pre-computed ICA to EEG/MEG data in fiff-format to remove eye-movement artefacts.
 Requires ICA decomposition from Fiff_Compute_ICA.py.
-For more help, type Fiff_Compute_ICA.py -h.
+For more help, type Fiff_Apply_ICA.py -h.
 Based on MNE-Python.
 For a tutorial on ICA in MNE-Python, look here:
 https://martinos.org/mne/stable/auto_tutorials/preprocessing/plot_artifacts_correction_ica.html

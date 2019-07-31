@@ -5,6 +5,7 @@ Find fiff-file with the most average sensor array position in a list of files.
 For example to be used for maxfilter -trans.
 A text file with the list of fiff-files needs to be specified:
 One line per file, each file with full path.
+For more help, type AverageSensorArray -h.
 An example text file can be found here:
 /imaging/local/software/mne_python/Utilities/AverageSensorArray/fiff_file_list.txt
 E.g., run in command line: AverageSensorArray fiff_file_list.txt

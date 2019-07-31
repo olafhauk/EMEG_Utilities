@@ -3,6 +3,7 @@
 ==================================================================================
 Plot head positions in MEG determined by Maxfilter.
 "pos"-files from Maxfilter (option -hp) are required as input.
+For more help, type Fiff_HeadPositions -h.
 Based on MNE-Python.
 Look here for an example:
 https://martinos.org/mne/stable/auto_examples/preprocessing/plot_head_positions.html
