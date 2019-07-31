@@ -22,9 +22,9 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Apply ICA.')
 
-parser.add_argument('--FileRawIn', help='Input filename for raw data (no suffix).')
-parser.add_argument('--FileICA', help='Output file for ICA decomposition (no suffix, default FileRawIn).', default='')
-parser.add_argument('--FileRawOut', help='Output filename for raw data (no suffix, default FileRawIn).', default='')
+parser.add_argument('--FileRawIn', help='Input filename for raw data.')
+parser.add_argument('--FileICA', help='Output file for ICA decomposition (default FileRawIn-ica.fif).', default='')
+parser.add_argument('--FileRawOut', help='Output filename for raw data (default FileRawIn_ica_raw.fif).', default='')
 parser.add_argument('--ICAcomps', help='ICA components to remove (default: as specified in precomputed ICA).', nargs='+', type=int, default=[])
 
 args = parser.parse_args()
@@ -53,26 +53,35 @@ print(mne)
 # create filenames
 ###
 
+# get filename stem for case with and without suffix .fif
+filestem = args.FileRawIn.split('.fif')[0]
+
 # raw-filenames to be subjected to ICA for this subject
-raw_fname_in = args.FileRawIn + '.fif'
+if args.FileRawIn[-4:] != '.fif':
+
+    raw_fname_in = filestem + '.fif'
+
+else:
+
+    raw_fname_in = args.FileRawIn
 
 # save raw with ICA applied and artefacts removed
 if args.FileRawOut == '':
 
-    raw_fname_out = args.FileRawIn + '_ica_raw.fif'
+    raw_fname_out = filestem + '_ica_raw.fif'
 
 else:
 
-    raw_fname_out = args.FileRawOut + '.fif'
+    raw_fname_out = args.FileRawOut
 
 # file with ICA decomposition
 if args.FileICA == '':
 
-    ica_fname_in = args.FileRawIn + '-ica.fif'
+    ica_fname_in = filestem + '-ica.fif'
 
 else:
 
-    ica_fname_in = args.FileICA + '-ica.fif'
+    ica_fname_in = args.FileICA
 
 ###
 # APPLY ICA

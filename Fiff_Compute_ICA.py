@@ -26,9 +26,9 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Compute ICA.')
 
-parser.add_argument('--FileRaw', help='Input filename (no suffix).')
-parser.add_argument('--FileICA', help='Output file for ICA decomposition (no suffix, default FileRaw).', default='')
-parser.add_argument('--FileHTML', help='Output filename for figures (no suffix, default FileRaw).', default='')
+parser.add_argument('--FileRaw', help='Input filename.')
+parser.add_argument('--FileICA', help='Output file for ICA decomposition (default FileRaw-ica.fif).', default='')
+parser.add_argument('--FileHTML', help='Output filename for HTML file with figures (default FileRaw_ica.html).', default='')
 parser.add_argument('--EOG', help='EOG channel name(s) for correlations (default EOG062).', nargs='+', default=['EOG062'])
 parser.add_argument('--ECG', help='ECG channel name(s) for correlations (default none).', nargs='+', default=[])
 parser.add_argument('--maxEOG', help='Maximum number of EOG components to remove (default 1).', type=int, default=1)
@@ -95,27 +95,36 @@ random_state = 23
 # whether to plot on screen or only to html
 show = False
 
+# get filename stem for case with and without suffix .fif
+filestem = args.FileRaw.split('.fif')[0]
+
 # raw data input filename
-raw_fname_in = args.FileRaw + '.fif'
+if args.FileRaw[-4:] != '.fif':
+
+    raw_fname_in = args.FileRaw + '.fif'
+
+else:
+
+    raw_fname_in = args.FileRaw
 
 # filename for ICA output
 if args.FileICA == '':
 
-    ica_fname_out = args.FileRaw + '-ica.fif'
+    ica_fname_out = filestem + '-ica.fif'
 
 else:
 
-    ica_fname_out = args.FileICA + '-ica.fif'
+    ica_fname_out = args.FileICA
 
 
 # filename for ICA output
 if args.FileHTML == '':
 
-    fname_html = args.FileRaw + '-ica.html'
+    fname_html = filestem + '-ica.html'
 
 else:
 
-    fname_html = args.FileHTML + '-ica.html'
+    fname_html = args.FileHTML
 
 
 ###
