@@ -23,6 +23,14 @@ from matplotlib import pyplot as plt
 
 import mne
 
+print('MNE %s.\n' % mne.__version__)
+
+if len(argv)==1:
+    # display help message when no args are passed.
+    exit(1)
+
+print(mne)
+
 parser = argparse.ArgumentParser(description='MEG head positions.')
 
 parser.add_argument('--FileRaw', help='Input filename.')
@@ -31,10 +39,6 @@ parser.add_argument('--FileOut', help='Output filename for figure (default: do n
 parser.add_argument('--mode', help='traces|field (default: traces).', default='traces')
 
 args = parser.parse_args()
-
-if len(argv)==1:
-    # display help message when no args are passed.
-    exit(1)
 
 ###
 # PROCESS DATA

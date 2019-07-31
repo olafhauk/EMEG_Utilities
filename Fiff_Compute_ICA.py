@@ -47,10 +47,6 @@ parser.add_argument('--method', help='Method for ICA decomposition (fastica|info
 
 args = parser.parse_args()
 
-if len(argv)==1:
-    # display help message when no args are passed.
-    exit(1)
-
 from os import path as op
 
 from shutil import copyfile
@@ -63,9 +59,13 @@ import mne
 from mne.preprocessing import ICA, create_eog_epochs, create_ecg_epochs
 from mne.report import Report
 
-print('MNE Version: %s\n' % mne.__version__)
-print(mne)
+print('MNE %s.\n' % mne.__version__)
 
+if len(argv)==1:
+    # display help message when no args are passed.
+    exit(1)
+
+print(mne)
 
 ###
 # ANALAYSIS PARAMETERS

@@ -22,14 +22,15 @@ from numpy import mean, sum
 
 import mne
 
-print('MNE Version: %s\n', mne.__version__)
-print(mne)
+print('MNE %s.\n' % mne.__version__)
 
 from mne.io import read_info
 
 if not argv[1:]:
 
     exit()
+
+print(mne)
 
 parser = argparse.ArgumentParser(description='Determine average MEG sensor array across fiff-files.')
 

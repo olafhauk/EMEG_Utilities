@@ -13,25 +13,8 @@ https://martinos.org/mne/stable/auto_tutorials/preprocessing/plot_artifacts_corr
 
 print(__doc__)
 
-###
-# PARSE INPUT ARGUMENTS
-###
-
 from sys import argv, exit
 import argparse
-
-parser = argparse.ArgumentParser(description='Apply ICA.')
-
-parser.add_argument('--FileRawIn', help='Input filename for raw data.')
-parser.add_argument('--FileICA', help='Output file for ICA decomposition (default FileRawIn-ica.fif).', default='')
-parser.add_argument('--FileRawOut', help='Output filename for raw data (default FileRawIn_ica_raw.fif).', default='')
-parser.add_argument('--ICAcomps', help='ICA components to remove (default: as specified in precomputed ICA).', nargs='+', type=int, default=[])
-
-args = parser.parse_args()
-
-if len(argv)==1:
-    # display help message when no args are passed.
-    exit(1)
 
 from sys import argv, exit
 
@@ -46,7 +29,25 @@ import importlib
 import mne
 from mne.preprocessing import ICA
 
-print('MNE Version: %s\n' % mne.__version__)
+print('MNE %s.\n' % mne.__version__)
+
+if len(argv)==1:
+    # display help message when no args are passed.
+    exit(1)
+
+###
+# PARSE INPUT ARGUMENTS
+###
+
+parser = argparse.ArgumentParser(description='Apply ICA.')
+
+parser.add_argument('--FileRawIn', help='Input filename for raw data.')
+parser.add_argument('--FileICA', help='Output file for ICA decomposition (default FileRawIn-ica.fif).', default='')
+parser.add_argument('--FileRawOut', help='Output filename for raw data (default FileRawIn_ica_raw.fif).', default='')
+parser.add_argument('--ICAcomps', help='ICA components to remove (default: as specified in precomputed ICA).', nargs='+', type=int, default=[])
+
+args = parser.parse_args()
+
 print(mne)
 
 ###
