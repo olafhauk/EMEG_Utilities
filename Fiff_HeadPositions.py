@@ -1,13 +1,13 @@
 #!/imaging/local/software/miniconda/envs/mne0.18/bin/python
 """
-==================================================================================
-Plot head positions in MEG determined by Maxfilter.
+=========================================================================================
+Plot head positions (translation and rotation) from MEG raw data determined by Maxfilter.
 "pos"-files from Maxfilter (option -hp) are required as input.
 For more help, type Fiff_HeadPositions -h.
 Based on MNE-Python.
 Look here for an example:
 https://martinos.org/mne/stable/auto_examples/preprocessing/plot_head_positions.html
-==================================================================================
+=========================================================================================
 """
 # Olaf Hauk, Python 3, July 2019
 
