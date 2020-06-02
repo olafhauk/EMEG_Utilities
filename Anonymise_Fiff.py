@@ -7,22 +7,50 @@ Anonymise MEG fiff-files using fiff_anonymise.
 Search sub-directories of root_paths for fiff-files.
 Anonymise those that contain realistic date of birth.
 Existing files will be replaced.
+For example:
+Anonymise_Fiff.py --SearchPaths /imaging/calvin/meg /imaging/hobbes/meg
+
+Type Anonymise_Fiff.py --help for options.
 ==========================================
 
-OH June 2017
+OH June 2017, June 2020
 """
 
+print(__doc__)
+
 import os
+from sys import argv, exit
+
+# only display help message when no args are passed.
+if len(argv) == 1:
+    exit(1)
+
+import argparse
+
 from mne.io import read_info
 
-# EDIT: list of paths to search for fiff-files
-root_paths = ['your_path_1', 'your_path_2']
-# e.g. root_paths = ['/imaging/calvin/meg/anon/', '/imaging/hobbes/meg/anon/']
+# Parse input arguments
 
-# DO NOT EDIT THE FOLLOWING unless you know what you are doing
+parser = argparse.ArgumentParser(description='Anonymise Fiff data.')
+
+parser.add_argument('--SearchPaths', type=str, nargs='+',
+                    help='Paths to search for fiff-files.')
+
+parser.add_argument('--MinYear', help='Minimum possible year of birth '
+                    '(default 1930).', type=float, default=1900)
+
+args = parser.parse_args()
+
+# list of paths to search for fiff-files
+root_paths = args.SearchPaths
+
+# make sure paths are in list
+if type(root_paths) != list:
+
+    root_paths = [root_paths]
 
 bytes_thresh = 35  # threshold for difference in file sizes (bytes)
-yob_thresh = 1930  # only consider years-of-birth above this
+yob_thresh = args.MinYear  # only consider years-of-birth above this
 
 fiff_list = []  # collect fiff-files in list
 for root_path in root_paths:
@@ -34,7 +62,6 @@ for root_path in root_paths:
 n_files = len(fiff_list)
 
 print("\n###\n%d fiff-files to consider.\n###" % n_files)
-
 
 # command to apply to filename
 cmd_string = '/neuro/bin/util/fiff_anonymize '

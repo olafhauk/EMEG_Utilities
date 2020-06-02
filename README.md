@@ -20,6 +20,6 @@ For example, this can be used as a reference sensor array for the Maxfilter "-tr
 
 Anonymise_Fiff.py:
 Anonymise MEG fiff-files with respect to pesonally identifiable information.
-Change the paths to search for fiff-files at the top of the script.
+Type Anonymise_Fiff.py --help for options.
 
 Olaf Hauk, July 2019, June 2020
