@@ -18,4 +18,8 @@ AverageSensorArray.py:
 For a list of fiff-files, determine the one with the most average position of the sensor array.
 For example, this can be used as a reference sensor array for the Maxfilter "-trans" option across subjects.
 
-Olaf Hauk, July 2019
+Anonymise_Fiff.py:
+Anonymise MEG fiff-files with respect to pesonally identifiable information.
+Change the paths to search for fiff-files at the top of the script.
+
+Olaf Hauk, July 2019, June 2020
