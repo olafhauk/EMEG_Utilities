@@ -1,7 +1,8 @@
 #!/imaging/local/software/miniconda/envs/mne0.18/bin/python
 """
 ==================================================================================
-Apply pre-computed ICA to EEG/MEG data in fiff-format to remove eye-movement artefacts.
+Apply pre-computed ICA to EEG/MEG data in fiff-format to remove eye-movement
+artefacts.
 Requires ICA decomposition from Fiff_Compute_ICA.py.
 For more help, type Fiff_Apply_ICA.py -h.
 Based on MNE-Python.
@@ -9,29 +10,18 @@ For a tutorial on ICA in MNE-Python, look here:
 https://martinos.org/mne/stable/auto_tutorials/preprocessing/plot_artifacts_correction_ica.html
 ==================================================================================
 """
-# Olaf Hauk, Python 3, July 2019
-
-print(__doc__)
+# Olaf Hauk, Python 3, July 2019, Feb 2020
 
 from sys import argv, exit
 import argparse
 
-from sys import argv, exit
-
-from os import path as op
-
-from shutil import copyfile
-
-import numpy as np
-
-import importlib
-
 import mne
-from mne.preprocessing import ICA
+
+print(__doc__)
 
 print('MNE %s.\n' % mne.__version__)
 
-if len(argv)==1:
+if len(argv) == 1:
     # display help message when no args are passed.
     exit(1)
 
